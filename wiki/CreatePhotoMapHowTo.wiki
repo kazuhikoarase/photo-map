@@ -108,7 +108,9 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 そこで、Flash の出番です。
 
-必要な Flash は、リンク用のツール
+[http://photo-map.googlecode.com/svn/assets/photomap/PhotoMap.html サンプル]
+
+必要な Flash は、
 [http://code.google.com/p/photo-map/downloads/list リンク用のツール]
 に含まれています。
 
