@@ -10,15 +10,6 @@ package com.d_project.photomap {
      */
     public class Loading extends TextField {
 
-        /**
-         * 下記のパスにフォントが存在しない場合は、適宜修正が必要
-         */
-        [Embed(source="C:\\WINDOWS\\Fonts\\verdana.ttf",
-			fontFamily="Verdana",
-			unicodeRange="U+002E,U+004C,U+0061,U+0064,U+0067,U+0069,U+006E,U+006F")]
-
-        private static var fontVerdana : Class;
-
         private var _step : int;
 
         private var _status : String;
@@ -28,11 +19,10 @@ package com.d_project.photomap {
             _step = 0;
             _status = Status.STOP;
             
-            defaultTextFormat = new TextFormat("Verdana", 14, 0x666666);
-            embedFonts = true;
+            defaultTextFormat = new TextFormat("_sans", 14, 0x666666);
             text = "Loading...";
 
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         }
 
         public function start() : void {
@@ -45,7 +35,7 @@ package com.d_project.photomap {
             _status = Status.STOP;
         }
         
-        private function onEnterFrame(e : Event) : void {
+        private function enterFrameHandler(event : Event) : void {
 
             switch(_status) {
 

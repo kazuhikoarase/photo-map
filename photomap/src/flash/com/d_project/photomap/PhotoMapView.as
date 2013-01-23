@@ -66,7 +66,7 @@ package com.d_project.photomap {
             addChild(currCanvas.mask);
 
             status = Status.IDLE;
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         }
 
         public function get title() : String {
@@ -127,33 +127,33 @@ package com.d_project.photomap {
             
             // XMLデータロード開始
             var xmlLoader : URLLoader = new URLLoader();
-            xmlLoader.addEventListener(Event.COMPLETE, onXMLLoadComplete);
+            xmlLoader.addEventListener(Event.COMPLETE, xmlLoader_completeHandler);
             xmlLoader.load(new URLRequest(url + XML_EXT) );
 
             status = Status.LOADING;
         }
 
-        private function onXMLLoadComplete(e : Event) : void {
+        private function xmlLoader_completeHandler(event : Event) : void {
 
-            var xmlLoader : URLLoader = URLLoader(e.target);
+            var xmlLoader : URLLoader = URLLoader(event.target);
             data = XML(xmlLoader.data);
 
             // 画像データロード開始
             var loader : Loader = new Loader();
-            loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageLoadComplete);
+            loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
             loader.load(new URLRequest(buildURL(data.name) ) );
         }
 
-        private function onImageLoadComplete(e : Event) : void {
+        private function loader_completeHandler(event : Event) : void {
 
-            var loaderInfo : LoaderInfo = LoaderInfo(e.target);
+            var loaderInfo : LoaderInfo = LoaderInfo(event.target);
             lastBitmap = currBitmap;
             currBitmap = Bitmap(loaderInfo.content);
 
             status = Status.LOAD_COMPLETE;
         }
 
-        private function onEnterFrame(e : Event) : void {
+        private function enterFrameHandler(event : Event) : void {
 
             drawMask(Sprite(lastCanvas.mask) );
             drawMask(Sprite(currCanvas.mask) );
