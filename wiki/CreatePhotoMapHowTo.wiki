@@ -123,6 +123,6 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 このような些細な工夫で、見栄えがぐっと変わります。
 
-|| http://photo-map.googlecode.com/svn/assets/p5.png	|| http://photo-map.googlecode.com/svn/assets/p5.png	||	
+|| http://photo-map.googlecode.com/svn/assets/p4.png	|| http://photo-map.googlecode.com/svn/assets/p5.png	||	
 || 概念的な視野											|| 実際の視野												||
  
