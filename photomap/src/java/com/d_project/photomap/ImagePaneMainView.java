@@ -53,9 +53,7 @@ class ImagePaneMainView extends ImageView {
             image = ImageIO.read(file);
         }
 
-        // İ’è‘Oˆ—
         preSetFile();
-
 
         this.file = file;
 
@@ -67,9 +65,7 @@ class ImagePaneMainView extends ImageView {
         }
         setImage(image);
 
-        // İ’èŒãˆ—
         postSetFile();
-
     }
             
     public File getFile() {

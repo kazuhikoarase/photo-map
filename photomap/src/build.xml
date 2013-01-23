@@ -1,7 +1,68 @@
-<?xml version="1.0" encoding="Shift_JIS" ?>
+<project default="all" basedir="../">
+    
+	<property environment="env"/>
+	<property name="FLEX_HOME" location="${env.FLEX_HOME}"/>
+        	
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist" location="dist"/>
+	<property name="target.player" value="10.0.0"/>
+    
+	<target name="all" depends="dist" />
 
-<project default="all">
+	<target name="init">
+        
+        <fail unless="FLEX_HOME" message="Environment variable FLEX_HOME is required."/>
 
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+
+        <taskdef resource="flexTasks.tasks">
+            <classpath>
+                <pathelement location="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+            </classpath>
+        </taskdef>
+		
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+	
+	<target name="compile" depends="init">
+
+		<mkdir dir="${build}/java"/>
+		
+		<javac srcdir="${src}/java"
+			destdir="${build}/java"
+			debug="true"
+			encoding="UTF-8"
+			target="1.5" 
+			includeantruntime="false" />
+
+		<mxmlc output="${build}/flash/PhotoMap.swf" locale="en_US"
+                    file="${src}/flash/PhotoMap.as">
+            <target-player>${target.player}</target-player>
+            <compiler.actionscript-file-encoding>UTF-8</compiler.actionscript-file-encoding>
+            <compiler.debug>false</compiler.debug>
+            <compiler.source-path path-element="${src}/flash" /> 
+            <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+			
+        </mxmlc>
+
+	</target>
+	
+	<target name="dist" depends="compile">
+        <jar jarfile="${dist}/photomap.jar" 
+        	manifest="${src}/assets/MANIFEST.MF">
+          <fileset dir="${build}/java">
+            <include name="**/*"/>
+          </fileset>
+        </jar>
+	</target>
+
+	<!-- 
 	<property name="build" location="../build"/>
 	<property name="dist" location="../dist"/>
 	<property name="src" location="."/>
@@ -51,12 +112,12 @@
 			<zipfileset dir="${src.java}" prefix="src/java">
 				<include name="**/*.java"/>
 			</zipfileset>
-<!--
+<!- -
 			<zipfileset dir="${src.flash}" prefix="src/flash">
 				<include name="**/*.fla"/>
 				<include name="**/*.as"/>
 			</zipfileset>
--->
+- ->
 		</zip>
 
 		<copy todir="${dist}/sample">
@@ -82,6 +143,7 @@
 			</zipfileset>
 		</zip>
     </target>
+ -->
 
 </project>
 

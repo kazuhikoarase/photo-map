@@ -52,7 +52,7 @@ class ImagePaneIconView extends JLabel {
             protected void importEvent(DnDEvent e) {
 
                 if (e.getSource() instanceof ImagePaneIconView) {
-                    // à⁄ìÆÇÕÇ≥ÇπÇ»Ç¢ÅB
+                    // prevent move.
                     return;
                 }
 
@@ -61,7 +61,6 @@ class ImagePaneIconView extends JLabel {
                 } catch(IOException ie) {
                     ImagePaneIconView.this.imagePane.getMainFrame().handleException(ie);
                 }
-
             }
         });
         
@@ -92,6 +91,4 @@ class ImagePaneIconView extends JLabel {
             130 + insets.left + insets.right,
             120 + insets.top + insets.bottom);
     }
-
-
 } 
