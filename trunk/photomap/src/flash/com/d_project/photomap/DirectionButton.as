@@ -51,18 +51,18 @@ package com.d_project.photomap {
                 _points[i] = matrix.transformPoint(_points[i]);
             }
 
-            addEventListener(MouseEvent.MOUSE_OVER, function(e : MouseEvent) : void {
+            addEventListener(MouseEvent.MOUSE_OVER, function(event : MouseEvent) : void {
                 _selected = true;
             } );
 
-            addEventListener(MouseEvent.MOUSE_OUT, function(e : MouseEvent) : void {
+            addEventListener(MouseEvent.MOUSE_OUT, function(event : MouseEvent) : void {
                 _selected = false;
             } );
             
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         }
         
-        private function onEnterFrame(e : Event) : void {
+        private function enterFrameHandler(event : Event) : void {
 
             this.alpha = _selected? 1.0 : 0.8;
 

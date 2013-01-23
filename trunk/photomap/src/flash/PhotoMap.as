@@ -115,15 +115,14 @@ class PhotoMapImpl extends Sprite {
 			trace(e);
 			_mouseLeave = false;
 		} );
-		stage.addEventListener(Event.MOUSE_LEAVE, function (e : Event) : void {
-			trace(e);
+		stage.addEventListener(Event.MOUSE_LEAVE, function (event : Event) : void {
 			_mouseLeave = true;
 		} );
 		
 		// キー操作用    
-		stage.addEventListener(KeyboardEvent.KEY_DOWN, function(e : KeyboardEvent) : void {
+		stage.addEventListener(KeyboardEvent.KEY_DOWN, function(event : KeyboardEvent) : void {
 			
-			switch(e.keyCode) {
+			switch(event.keyCode) {
 				
 				case Keyboard.LEFT :
 					toLeft();
@@ -176,10 +175,10 @@ class PhotoMapImpl extends Sprite {
 		_photoMapView.y = gap;
 		_photoMapView.explicitWidth = 400;
 		_photoMapView.explicitHeight = 300;
-		_photoMapView.addEventListener(PhotoMapEvent.LOAD_COMPLETE, function (e : Event) : void {
+		_photoMapView.addEventListener(PhotoMapEvent.LOAD_COMPLETE, function (event : Event) : void {
 			hideLoading();
 		});
-		_photoMapView.addEventListener(PhotoMapEvent.WALK_COMPLETE, function (e : Event) : void {
+		_photoMapView.addEventListener(PhotoMapEvent.WALK_COMPLETE, function (event : Event) : void {
 			showControls();
 		});
 		addChild(_photoMapView);
@@ -195,7 +194,7 @@ class PhotoMapImpl extends Sprite {
 		_leftButton = new DirectionButton(Direction.LEFT, buttonSize);
 		_leftButton.x = - (buttonSize * 2 + gap);
 		_leftButton.y = 0;
-		_leftButton.addEventListener(MouseEvent.CLICK, function(e : MouseEvent) : void {
+		_leftButton.addEventListener(MouseEvent.CLICK, function(event : MouseEvent) : void {
 			toLeft();
 		});
 		_buttonPane.addChild(_leftButton);
@@ -204,7 +203,7 @@ class PhotoMapImpl extends Sprite {
 		_frontButton = new DirectionButton(Direction.FRONT, buttonSize);
 		_frontButton.x = 0;
 		_frontButton.y = 0;
-		_frontButton.addEventListener(MouseEvent.CLICK, function(e : MouseEvent) : void {
+		_frontButton.addEventListener(MouseEvent.CLICK, function(event : MouseEvent) : void {
 			toFront();
 		});
 		_buttonPane.addChild(_frontButton);
@@ -213,7 +212,7 @@ class PhotoMapImpl extends Sprite {
 		_rightButton = new DirectionButton(Direction.RIGHT, buttonSize);
 		_rightButton.x = (buttonSize * 2 + gap);
 		_rightButton.y = 0;
-		_rightButton.addEventListener(MouseEvent.CLICK, function(e : MouseEvent) : void {
+		_rightButton.addEventListener(MouseEvent.CLICK, function(event : MouseEvent) : void {
 			toRight();
 		});
 		_buttonPane.addChild(_rightButton);
@@ -298,7 +297,7 @@ class PhotoMapImpl extends Sprite {
 		_loading.stop();
 	}
 	
-	private function enterFrameHandler(e : Event) : void {
+	private function enterFrameHandler(event : Event) : void {
 		
 		if (!_mouseLeave && 
 				0 <= _photoMapView.mouseX &&
