@@ -48,7 +48,7 @@
             <compiler.debug>false</compiler.debug>
             <compiler.source-path path-element="${src}/flash" /> 
             <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
-			
+			<use-network>false</use-network>
         </mxmlc>
 
 	</target>
@@ -60,6 +60,22 @@
             <include name="**/*"/>
           </fileset>
         </jar>
+		<copy todir="${dist}">
+			<fileset dir="${build}/flash">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist}">
+			<fileset dir="${src}/assets">
+				<include name="**/*"/>
+				<exclude name="MANIFEST.MF"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist}">
+			<fileset dir="${src}/flash-sample">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
 	</target>
 
 	<!-- 

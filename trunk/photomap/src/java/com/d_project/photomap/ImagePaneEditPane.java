@@ -29,7 +29,7 @@ class ImagePaneEditPane extends JPanel {
         this.editableMap = new HashMap<String, EditableComponent>();
         
         addText("title", "Title", 20);
-        addTextArea("memo", "Memo", 10, 40);
+        addTextArea("description", "Description", 10, 40);
     }
 
     public Set<String> getValueNames() {
