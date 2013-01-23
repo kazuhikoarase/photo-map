@@ -13,17 +13,17 @@ package com.d_project.photomap {
      */
     public class DirectionButton extends Sprite {
 
-        private var size : Number;
+        private var _size : Number;
 
-        private var points : Array;
+        private var _points : Array;
 
-        private var selected : Boolean;
+        private var _selected : Boolean;
 
         public function DirectionButton(type : String, size : Number) {
 
-            this.size = size;
+            this._size = size;
             this.buttonMode = true;
-            this.selected = false;
+            this._selected = false;
             
             var matrix : Matrix = new Matrix(1, 0, 0, 1, 0, 0);
 
@@ -42,21 +42,21 @@ package com.d_project.photomap {
                 break;
             }
             
-            points = [
+            _points = [
                 new Point(size * -0.35, size * -0.5),
                 new Point(size * 0.5, 0),
                 new Point(size * -0.35, size * 0.5)
             ];
-            for (var i : int = 0; i < points.length; i++) {
-                points[i] = matrix.transformPoint(points[i]);
+            for (var i : int = 0; i < _points.length; i++) {
+                _points[i] = matrix.transformPoint(_points[i]);
             }
 
             addEventListener(MouseEvent.MOUSE_OVER, function(e : MouseEvent) : void {
-                selected = true;
+                _selected = true;
             } );
 
             addEventListener(MouseEvent.MOUSE_OUT, function(e : MouseEvent) : void {
-                selected = false;
+                _selected = false;
             } );
             
             addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -64,7 +64,7 @@ package com.d_project.photomap {
         
         private function onEnterFrame(e : Event) : void {
 
-            this.alpha = selected? 1.0 : 0.8;
+            this.alpha = _selected? 1.0 : 0.8;
 
             var g : Graphics = graphics;
             g.clear();
@@ -72,15 +72,15 @@ package com.d_project.photomap {
             // 本体
             g.lineStyle(1, 0x666666);
             g.beginFill(0xdddddd);
-            g.drawRoundRect(-size, -size, size * 2, size * 2, size * 0.4, size* 0.4);
+            g.drawRoundRect(-_size, -_size, _size * 2, _size * 2, _size * 0.4, _size* 0.4);
             g.endFill();
 
             // 方向を表す三角形
             g.lineStyle();
             g.beginFill(0x666666);
-            g.moveTo(points[0].x, points[0].y);
-            g.lineTo(points[1].x, points[1].y);
-            g.lineTo(points[2].x, points[2].y);
+            g.moveTo(_points[0].x, _points[0].y);
+            g.lineTo(_points[1].x, _points[1].y);
+            g.lineTo(_points[2].x, _points[2].y);
             g.endFill();
         }
     }

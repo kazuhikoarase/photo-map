@@ -73,8 +73,8 @@ package com.d_project.photomap {
             return data.title;
         }
 
-        public function get memo() : String {
-            var s : String = data.memo;
+        public function get description() : String {
+            var s : String = data.description;
             if (!isEmpty(s) ) {
                 // CRLF を LF に変換
                 s = s.replace(/\r\n/g, "\n");

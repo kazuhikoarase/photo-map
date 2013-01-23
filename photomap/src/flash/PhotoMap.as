@@ -30,7 +30,7 @@ package {
 		
 		private var _titleText : TextField;
 		
-		private var _memoText : TextField;
+		private var _descriptionText : TextField;
 		
 		private var _buttonPane : Sprite;
 		
@@ -122,8 +122,8 @@ package {
 			// タイトルのフォントサイズ
 			var titleFontSize : Number = 14;
 			
-			// メモのフォントサイズ
-			var memoFontSize : Number = 12;
+			// 説明のフォントサイズ
+			var descriptionFontSize : Number = 12;
 			
 			_photoMapView = new PhotoMapView();
 			_photoMapView.x = 0;
@@ -185,19 +185,21 @@ package {
 			_titleText.x = 0;
 			_titleText.y = txtYPos;
 			_titleText.width = explicitWidth;
-			_titleText.defaultTextFormat = new TextFormat("Verdana", titleFontSize, 0x000000, true);
+			_titleText.defaultTextFormat =
+					new TextFormat("Verdana", titleFontSize, 0x000000, true);
 			addChild(_titleText);
 			
 			txtYPos += titleFontSize + gap;
 			
-			_memoText = new TextField();
-			_memoText.x = 0;
-			_memoText.y = txtYPos;
-			_memoText.width = explicitWidth;
-			_memoText.height = explicitHeight - gap - txtYPos;
-			_memoText.multiline = true;
-			_memoText.defaultTextFormat = new TextFormat("Verdana", memoFontSize, 0x000000);
-			addChild(_memoText);
+			_descriptionText = new TextField();
+			_descriptionText.x = 0;
+			_descriptionText.y = txtYPos;
+			_descriptionText.width = explicitWidth;
+			_descriptionText.height = explicitHeight - gap - txtYPos;
+			_descriptionText.multiline = true;
+			_descriptionText.defaultTextFormat =
+					new TextFormat("Verdana", descriptionFontSize, 0x000000);
+			addChild(_descriptionText);
 			
 			
 		}
@@ -228,7 +230,7 @@ package {
 		
 		private function showControls() : void {
 			_titleText.text = _photoMapView.title;
-			_memoText.text = _photoMapView.memo;
+			_descriptionText.text = _photoMapView.description;
 			_leftButton.visible = _photoMapView.hasLeft();
 			_frontButton.visible = _photoMapView.hasFront();
 			_rightButton.visible = _photoMapView.hasRight();
@@ -236,7 +238,7 @@ package {
 		
 		private function hideControls() : void {
 			_titleText.text = "";
-			_memoText.text = "";
+			_descriptionText.text = "";
 			_leftButton.visible = false;
 			_frontButton.visible = false;
 			_rightButton.visible = false;
