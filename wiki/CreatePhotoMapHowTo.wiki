@@ -79,12 +79,11 @@ http://photo-map.googlecode.com/svn/assets/p3.png
 
 そこで、専用のツールを使用します。
 
-ダウンロード
-
-photomap-1.0.zip
 システム要件
 
 JRE(JDK)1.6 以上 
+
+[http://code.google.com/p/photo-map/downloads/list ダウンロード]
 
 使用方法
 
@@ -109,7 +108,9 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 そこで、Flash の出番です。
 
-必要な Flash は、リンク用のツール (photomap-1.0.zip) に含まれています。
+必要な Flash は、リンク用のツール
+[http://code.google.com/p/photo-map/downloads/list リンク用のツール]
+に含まれています。
 
 ==5. コツ==
 
@@ -124,8 +125,10 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 このような些細な工夫で、見栄えがぐっと変わります。
 
 概念的な視野
+
 http://photo-map.googlecode.com/svn/assets/p4.png
 
 実際の視野
+
 http://photo-map.googlecode.com/svn/assets/p5.png
  
