@@ -8,7 +8,7 @@
 
 デジタルカメラは、一度にたくさんの写真を撮ることができます。 また、不要な写真を削除するのも簡単です。
 
-こうした特性を生かして、撮影した場所を動き回れるリンクマップを作れないだろうか？ と思い、
+こうした特徴を生かして、撮影した場所を動き回れるリンクマップを作れないだろうか？ と思い、
 実際にやってみることにしました。
 
 ==2. 写真を撮る==
@@ -43,7 +43,9 @@ http://photo-map.googlecode.com/svn/assets/p2.png
 
 ===3-1. リンクの張り方===
 
-1枚の写真を、左側(同地点)、前方(次地点)、右側(同地点)とリンクします。 リンクした情報を、画像ファイル名 + ".xml" という名前で保存します。 例えば画像ファイル名が DSCF0001.JPG ならば、 DSCF0001.JPG.xml とします。
+1枚の写真を、左側(同地点)、前方(次地点)、右側(同地点)とリンクします。
+リンクした情報を、画像ファイル名 + ".xml" という名前で保存します。
+例えば画像ファイル名が DSCF0001.JPG ならば、 DSCF0001.JPG.xml とします。
 
 XML のフォーマットは次のような形式にします。
 
@@ -52,9 +54,9 @@ XML のフォーマットは次のような形式にします。
 ||パス					||値							||
 ||/photomap				||ルート要素					||
 ||/photomap/name		||画像ファイルの url				||
-||/photomap/left		||画像ファイルの相対 url(左側)	||
-||/photomap/front		||画像ファイルの相対 url(前方)	||
-||/photomap/right		||画像ファイルの相対 url(右側)	||
+||/photomap/left		||画像ファイルの相対 url (左側)	||
+||/photomap/front		||画像ファイルの相対 url (前方)	||
+||/photomap/right		||画像ファイルの相対 url (右側)	||
 ||/photomap/title		||タイトル						||
 ||/photomap/description ||説明						||
 
@@ -73,7 +75,7 @@ XML のフォーマットは次のような形式にします。
 
 http://photo-map.googlecode.com/svn/assets/p3.png
 
-===3-2. PhotoMap(リンク用のツール) を使う===
+===3-2. PhotoMap(リンク用ツール)を使う===
 
 理屈は単純ですが、実際に大量の写真のリンクを作るのは大変な作業です。 
 
@@ -81,7 +83,7 @@ http://photo-map.googlecode.com/svn/assets/p3.png
 
 ====システム要件====
 
-JRE(JDK)1.6 以上 
+Java6 以上 
 
 [http://code.google.com/p/photo-map/downloads/list ダウンロード]
 
@@ -100,14 +102,14 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 ==4. 実際にリンクを動き回る==
 
-リンクが完成したら、あとは動き見せ方を考えるだけです。 
+リンクが完成したら、あとは見せ方です。 
 
-ここでは Flash を使用してみました。
+ここでは Flash を使用しました。
 
 [http://photo-map.googlecode.com/svn/assets/photomap/PhotoMap.html サンプル]
 
-必要な Flash は、
-[http://code.google.com/p/photo-map/downloads/list リンク用のツール]
+必要な Flash のリソースは
+[http://code.google.com/p/photo-map/downloads/list リンク用ツール]
 に含まれています。
 
 ==5. コツ==
@@ -116,7 +118,7 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 自分が撮って回った範囲で、気づいた点を挙げます。
 
- * どの地点でも、必ず時計回り(半時計回り)に、回りながら撮る。
+ * どの地点でも、必ず時計回りに、回りながら撮る。
  * 地点間で空（そら）を撮って、地点間の区切りにする(これを忘れると地点間の区切りがわからなくなってしまい、 後のリンク作成が困難になります。)。
  * 撮影する前に、数歩下がる。(一般的なカメラの視野は、人間の視野より狭いのです) 
 
