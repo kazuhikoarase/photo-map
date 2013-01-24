@@ -14,6 +14,12 @@
         
         <fail unless="FLEX_HOME" message="Environment variable FLEX_HOME is required."/>
 
+		<tstamp>
+			<format property="timestamp" pattern="yyyyMMddHHmm"/>
+		</tstamp>
+		<property name="version" value="v${timestamp}"/>
+		<property name="target.name" value="photomap.${version}"/>
+
 		<mkdir dir="${build}"/>
 		<mkdir dir="${dist}"/>
 
@@ -54,112 +60,42 @@
 	</target>
 	
 	<target name="dist" depends="compile">
-        <jar jarfile="${dist}/photomap.jar" 
+
+		<jar jarfile="${dist}/photomap.jar" 
         	manifest="${src}/assets/MANIFEST.MF">
           <fileset dir="${build}/java">
             <include name="**/*"/>
           </fileset>
         </jar>
+
 		<copy todir="${dist}">
 			<fileset dir="${build}/flash">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
+
 		<copy todir="${dist}">
 			<fileset dir="${src}/assets">
 				<include name="**/*"/>
 				<exclude name="MANIFEST.MF"/>
 			</fileset>
 		</copy>
+
 		<copy todir="${dist}">
 			<fileset dir="${src}/flash-sample">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
+
+		<zip destfile="${dist}/${target.name}.zip">
+			<zipfileset dir="${dist}" prefix="${target.name}">
+				<include name="**/*"/>
+				<exclude name="*.zip"/>
+				<exclude name="**/.cache/**"/>
+			</zipfileset>
+		</zip>
+
 	</target>
-
-	<!-- 
-	<property name="build" location="../build"/>
-	<property name="dist" location="../dist"/>
-	<property name="src" location="."/>
-	<property name="src.java" location="${src}/java"/>
-	<property name="src.flash" location="${src}/flash"/>
-	<property name="src.sample" location="${src}/sample"/>
-    
-	<target name="all" depends="dist">
-    </target>
-
-	<target name="compile">
-
-		<javac srcdir="${src.java}" destdir="${build}" debug="true" encoding="Shift_JIS"/>
-
-        <jar jarfile="${build}/photomap.jar" 
-        	manifest="${src.java}/META-INF/MANIFEST.MF">
-          <fileset dir="${build}">
-            <include name="**/*.class"/>
-          </fileset>
-        </jar>
-                
-    </target>
-
-	<target name="dist" depends="compile">
-
-		<copy todir="${dist}/photomap">
-			<fileset dir="${src}">
-				<include name="README.txt"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dist}/photomap">
-			<fileset dir="${build}">
-				<include name="photomap.jar"/>
-			</fileset>
-		</copy>
-
-		<copy todir="${dist}/photomap/web">
-			<fileset dir="${src.flash}">
-				<include name="*.swf"/>
-				<include name="*.js"/>
-				<include name="*.html"/>
-			</fileset>
-		</copy>
-
-		<zip zipfile="${dist}/photomap/src.zip">
-			<zipfileset dir="${src.java}" prefix="src/java">
-				<include name="**/*.java"/>
-			</zipfileset>
-<!- -
-			<zipfileset dir="${src.flash}" prefix="src/flash">
-				<include name="**/*.fla"/>
-				<include name="**/*.as"/>
-			</zipfileset>
-- ->
-		</zip>
-
-		<copy todir="${dist}/sample">
-			<fileset dir="${src.sample}">
-			</fileset>
-		</copy>
-
-		<touch datetime="09/17/2006 00:00 AM">
-			<fileset dir="${dist}">
-				<include name="**"/>
-			</fileset>
-		</touch>
-		
-		<zip zipfile="${dist}/photomap-1.0.zip">
-			<zipfileset dir="${dist}/photomap" prefix="photomap">
-				<include name="**/**"/>
-			</zipfileset>
-		</zip>
-
-		<zip zipfile="${dist}/photomap-sample.zip" compress="false">
-			<zipfileset dir="${dist}/sample" prefix="sample">
-				<include name="**/**"/>
-			</zipfileset>
-		</zip>
-    </target>
- -->
 
 </project>
 
