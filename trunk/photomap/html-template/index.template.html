@@ -27,6 +27,13 @@
             object:focus { outline:none; }
             #flashContent { display:none; }
         </style>
+
+        <script type="text/javascript">
+        var pageChangeHandler = function(url, title) {
+			document.title = title? 'PhotoMap - ' + title : 'PhotoMap';
+			document.location.href = '#' + url;
+		};
+        </script>
         
         <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
         <!-- BEGIN Browser History required section ${useBrowserHistory}>
@@ -41,6 +48,7 @@
             // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
             var xiSwfUrlStr = "${expressInstallSwf}";
             var flashvars = {};
+            flashvars.pageChangeHandler = "pageChangeHandler";
             if (document.location.hash) {
                 flashvars.defaultUrl =
                 	document.location.hash.substring(1);

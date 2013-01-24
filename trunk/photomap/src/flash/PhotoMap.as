@@ -62,6 +62,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.external.ExternalInterface;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.ui.Keyboard;
@@ -180,6 +181,7 @@ class PhotoMapImpl extends Sprite {
 		});
 		_photoMapView.addEventListener(PhotoMapEvent.WALK_COMPLETE, function (event : Event) : void {
 			showControls();
+			callPageChangeHandler();
 		});
 		addChild(_photoMapView);
 		
@@ -231,7 +233,7 @@ class PhotoMapImpl extends Sprite {
 		_titleText.y = txtYPos;
 		_titleText.width = explicitWidth;
 		_titleText.defaultTextFormat =
-			new TextFormat("Verdana", titleFontSize, 0x000000, true);
+			new TextFormat("_sans", titleFontSize, 0x000000, true);
 		addChild(_titleText);
 		
 		txtYPos += titleFontSize + gap;
@@ -243,10 +245,8 @@ class PhotoMapImpl extends Sprite {
 		_descriptionText.height = explicitHeight - gap - txtYPos;
 		_descriptionText.multiline = true;
 		_descriptionText.defaultTextFormat =
-			new TextFormat("Verdana", descriptionFontSize, 0x000000);
+			new TextFormat("_sans", descriptionFontSize, 0x000000);
 		addChild(_descriptionText);
-		
-		
 	}
 	
 	private function toLeft() : void {
@@ -295,6 +295,17 @@ class PhotoMapImpl extends Sprite {
 	
 	private function hideLoading() : void {
 		_loading.stop();
+	}
+	
+	private function callPageChangeHandler() : void {
+		var pageChangeHandler : String =
+			loaderInfo.parameters.pageChangeHandler;
+		if (!pageChangeHandler) {
+			return;
+		}
+		ExternalInterface.call(pageChangeHandler,
+			_photoMapView.url,
+			_photoMapView.title);
 	}
 	
 	private function enterFrameHandler(event : Event) : void {

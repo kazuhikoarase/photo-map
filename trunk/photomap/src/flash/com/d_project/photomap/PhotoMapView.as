@@ -19,25 +19,25 @@ package com.d_project.photomap {
 
         private static const XML_EXT : String = ".xml"; 
             
-        private var url : String;
+        private var _url : String;
 
-        private var data : XML;
+        private var _data : XML;
 
-        private var lastBitmap : Bitmap;
+        private var _lastBitmap : Bitmap;
 
-        private var currBitmap : Bitmap;
+        private var _currBitmap : Bitmap;
 
-        private var lastCanvas : Sprite;
+        private var _lastCanvas : Sprite;
 
-        private var currCanvas : Sprite;
+        private var _currCanvas : Sprite;
 
-        private var status : String;
+        private var _status : String;
 
-        private var step : Number;
+        private var _step : Number;
         
-        private var direction : String;
+        private var _direction : String;
         
-        private var perspectiveLevel : Number;
+        private var _perspectiveLevel : Number;
 
         public var explicitWidth : Number;
 
@@ -47,34 +47,38 @@ package com.d_project.photomap {
             
             explicitWidth = 320;
             explicitHeight = 240;
-            perspectiveLevel = 0.0015;
-            step = 0;
-            direction = null;
+            _perspectiveLevel = 0.0015;
+            _step = 0;
+            _direction = null;
 
-            lastBitmap = null;
-            currBitmap = null;
+            _lastBitmap = null;
+            _currBitmap = null;
 
-            lastCanvas = new Sprite();
-            lastCanvas.mask = new Sprite();
+            _lastCanvas = new Sprite();
+            _lastCanvas.mask = new Sprite();
             
-            currCanvas = new Sprite();
-            currCanvas.mask = new Sprite();
+            _currCanvas = new Sprite();
+            _currCanvas.mask = new Sprite();
 
-            addChild(lastCanvas);
-            addChild(lastCanvas.mask);
-            addChild(currCanvas);
-            addChild(currCanvas.mask);
+            addChild(_lastCanvas);
+            addChild(_lastCanvas.mask);
+            addChild(_currCanvas);
+            addChild(_currCanvas.mask);
 
-            status = Status.IDLE;
+            _status = Status.IDLE;
             addEventListener(Event.ENTER_FRAME, enterFrameHandler);
         }
-
+		
+		public function get url() : String {
+			return _url;
+		}
+		
         public function get title() : String {
-            return data.title;
+            return _data.title;
         }
 
         public function get description() : String {
-            var s : String = data.description;
+            var s : String = _data.description;
             if (!isEmpty(s) ) {
                 // CRLF を LF に変換
                 s = s.replace(/\r\n/g, "\n");
@@ -83,30 +87,30 @@ package com.d_project.photomap {
         }
 
         public function toLeft() : void {
-            direction = Direction.LEFT;
-            load(buildURL(data.left) );
+            _direction = Direction.LEFT;
+            load(buildURL(_data.left) );
         }
 
         public function toFront() : void {
-            direction = Direction.FRONT;
-            load(buildURL(data.front) );
+            _direction = Direction.FRONT;
+            load(buildURL(_data.front) );
         }
 
         public function toRight() : void {
-            direction = Direction.RIGHT;
-            load(buildURL(data.right) );
+            _direction = Direction.RIGHT;
+            load(buildURL(_data.right) );
         }
 
         public function hasLeft() : Boolean {
-            return !isBusy() && data != null && !isEmpty(data.left);
+            return !isBusy() && _data != null && !isEmpty(_data.left);
         }
 
         public function hasFront() : Boolean {
-            return !isBusy() && data != null && !isEmpty(data.front);
+            return !isBusy() && _data != null && !isEmpty(_data.front);
         }
 
         public function hasRight() : Boolean {
-            return !isBusy() && data != null && !isEmpty(data.right);
+            return !isBusy() && _data != null && !isEmpty(_data.right);
         }
 
         private function isEmpty(s : String) : Boolean {
@@ -114,7 +118,7 @@ package com.d_project.photomap {
         }
 
         private function isBusy() : Boolean {
-            return status != Status.IDLE;
+            return _status != Status.IDLE;
         }
 
         public function load(url : String) : void {
@@ -123,65 +127,65 @@ package com.d_project.photomap {
                 return;
             }
             
-            this.url = url;
+            this._url = url;
             
             // XMLデータロード開始
             var xmlLoader : URLLoader = new URLLoader();
             xmlLoader.addEventListener(Event.COMPLETE, xmlLoader_completeHandler);
             xmlLoader.load(new URLRequest(url + XML_EXT) );
 
-            status = Status.LOADING;
+            _status = Status.LOADING;
         }
 
         private function xmlLoader_completeHandler(event : Event) : void {
 
             var xmlLoader : URLLoader = URLLoader(event.target);
-            data = XML(xmlLoader.data);
+            _data = XML(xmlLoader.data);
 
             // 画像データロード開始
             var loader : Loader = new Loader();
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loader_completeHandler);
-            loader.load(new URLRequest(buildURL(data.name) ) );
+            loader.load(new URLRequest(buildURL(_data.name) ) );
         }
 
         private function loader_completeHandler(event : Event) : void {
 
             var loaderInfo : LoaderInfo = LoaderInfo(event.target);
-            lastBitmap = currBitmap;
-            currBitmap = Bitmap(loaderInfo.content);
+            _lastBitmap = _currBitmap;
+            _currBitmap = Bitmap(loaderInfo.content);
 
-            status = Status.LOAD_COMPLETE;
+            _status = Status.LOAD_COMPLETE;
         }
 
         private function enterFrameHandler(event : Event) : void {
 
-            drawMask(Sprite(lastCanvas.mask) );
-            drawMask(Sprite(currCanvas.mask) );
+            drawMask(Sprite(_lastCanvas.mask) );
+            drawMask(Sprite(_currCanvas.mask) );
             
-            switch(status) {
+            switch(_status) {
 
             case Status.LOADING :
                 break;
 
             case Status.LOAD_COMPLETE :
-                step = 0;
-                status = Status.WALKING;
+                _step = 0;
+                _status = Status.WALKING;
                 updateImages();
                 dispatchEvent(new PhotoMapEvent(PhotoMapEvent.LOAD_COMPLETE) );
                 break;
                     
             case Status.WALKING :
-                step = step + 5;
-                if (step > 100) {
-                    step = 100;
-                    status = Status.WALK_COMPLETE;
+                _step = _step + 5;
+                if (_step > 100) {
+                    _step = 100;
+                    _status = Status.WALK_COMPLETE;
                 }
                 updateImages();
                 break;
 
             case Status.WALK_COMPLETE :
-                lastBitmap = null;
-                status = Status.IDLE;
+                _lastBitmap = null;
+                _status = Status.IDLE;
                 dispatchEvent(new PhotoMapEvent(PhotoMapEvent.WALK_COMPLETE) );
                 break;
 
@@ -195,7 +199,7 @@ package com.d_project.photomap {
 
         private function updateImages() : void {
 
-            switch(direction) {
+            switch(_direction) {
 
             case Direction.LEFT :
                 updateLeftImages();
@@ -218,40 +222,40 @@ package com.d_project.photomap {
         private function updateLeftImages() : void {
 
             // PI ~ PI / 2
-            var theta : Number = Math.PI - Math.PI * step / 200;
-            updateRotateImages(currCanvas, currBitmap, theta);
+            var theta : Number = Math.PI - Math.PI * _step / 200;
+            updateRotateImages(_currCanvas, _currBitmap, theta);
 
-            if (lastBitmap != null) {
-                updateRotateImages(lastCanvas, lastBitmap, theta - Math.PI / 2);
+            if (_lastBitmap != null) {
+                updateRotateImages(_lastCanvas, _lastBitmap, theta - Math.PI / 2);
             }
         }
 
         private function updateRightImages() : void {
 
             // 0 ~ PI / 2
-            var theta : Number = Math.PI * step / 200;
-            updateRotateImages(currCanvas, currBitmap, theta);
+            var theta : Number = Math.PI * _step / 200;
+            updateRotateImages(_currCanvas, _currBitmap, theta);
 
-            if (lastBitmap != null) {
-                updateRotateImages(lastCanvas, lastBitmap, theta + Math.PI / 2);
+            if (_lastBitmap != null) {
+                updateRotateImages(_lastCanvas, _lastBitmap, theta + Math.PI / 2);
             }
         }
 
         private function updateFrontImages() : void {
 
-            updateLinerImages(currCanvas, currBitmap, 0.5 + step / 200, step / 100);
+            updateLinerImages(_currCanvas, _currBitmap, 0.5 + _step / 200, _step / 100);
 
-            if (lastBitmap != null) {
-                updateLinerImages(lastCanvas, lastBitmap, 1 + step / 100, 1);
+            if (_lastBitmap != null) {
+                updateLinerImages(_lastCanvas, _lastBitmap, 1 + _step / 100, 1);
             }
         }
 
         private function updateDefaultImages() : void {
 
-            updateLinerImages(currCanvas, currBitmap, 1, step / 100);
+            updateLinerImages(_currCanvas, _currBitmap, 1, _step / 100);
 
-            if (lastBitmap != null) {
-                updateLinerImages(lastCanvas, lastBitmap, 1, 1 - step / 100);
+            if (_lastBitmap != null) {
+                updateLinerImages(_lastCanvas, _lastBitmap, 1, 1 - _step / 100);
             }
         }
 
@@ -278,8 +282,8 @@ package com.d_project.photomap {
             
             var rect : Rectangle = getImageRect(bitmap);
             var pos : Object = calcRotatePosition(theta, rect);
-            var sc1 : Number = (explicitWidth / 2 - pos.y1) * perspectiveLevel + 1;
-            var sc2 : Number = (explicitWidth / 2 - pos.y2) * perspectiveLevel + 1;
+            var sc1 : Number = (explicitWidth / 2 - pos.y1) * _perspectiveLevel + 1;
+            var sc2 : Number = (explicitWidth / 2 - pos.y2) * _perspectiveLevel + 1;
 
             drawBitmap(
                 canvas, bitmap,
@@ -322,8 +326,8 @@ package com.d_project.photomap {
         private function buildURL(relativeURL : String) : String {
 
             // ディレクトリ組み立て
-            var i : int = url.lastIndexOf("/");
-            var dir : String = (i != -1)? url.substring(0, i) : url;
+            var i : int = _url.lastIndexOf("/");
+            var dir : String = (i != -1)? _url.substring(0, i) : _url;
 
             return trimURL(dir + "/" + relativeURL);
         }        
