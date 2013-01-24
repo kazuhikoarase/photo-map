@@ -47,8 +47,8 @@
 			target="1.5" 
 			includeantruntime="false" />
 
-		<mxmlc output="${build}/flash/PhotoMap.swf" locale="en_US"
-                    file="${src}/flash/PhotoMap.as">
+		<mxmlc output="${build}/flash/photomap.swf" locale="en_US"
+                    file="${src}/flash/photomap.as">
             <target-player>${target.player}</target-player>
             <compiler.actionscript-file-encoding>UTF-8</compiler.actionscript-file-encoding>
             <compiler.debug>false</compiler.debug>
