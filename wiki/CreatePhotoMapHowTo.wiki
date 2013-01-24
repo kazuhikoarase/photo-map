@@ -102,7 +102,7 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 ここでは Flash を使用します。
 
->> [http://photo-map.googlecode.com/svn/assets/photomap/PhotoMap.html サンプル]
+>> [http://photo-map.googlecode.com/svn/assets/photomap/photomap.html サンプル]
 
 必要な Flash のリソースは
 [http://code.google.com/p/photo-map/downloads/list リンク用ツール]
