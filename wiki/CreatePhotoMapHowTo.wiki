@@ -75,13 +75,11 @@ http://photo-map.googlecode.com/svn/assets/p3.png
 
 理屈は単純ですが、実際に大量の写真のリンクを作るのは大変な作業です。 
 
-そこで、専用のツールを使用します。
+そこで、[http://code.google.com/p/photo-map/downloads/list 専用のツール]を使用します。
 
 === システム要件 ===
 
  Java6 以上 
-
- [http://code.google.com/p/photo-map/downloads/list ダウンロード]
 
 === 使用方法 ===
 
@@ -102,7 +100,7 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 ここでは Flash を使用します。
 
-[http://photo-map.googlecode.com/svn/assets/photomap/PhotoMap.html サンプル]
+>> [http://photo-map.googlecode.com/svn/assets/photomap/PhotoMap.html サンプル]
 
 必要な Flash のリソースは
 [http://code.google.com/p/photo-map/downloads/list リンク用ツール]
