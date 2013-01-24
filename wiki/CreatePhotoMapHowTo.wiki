@@ -1,4 +1,6 @@
-PhotoMap 作成方法
+= PhotoMap 作成方法 =
+
+<wiki:toc max_depth="1" />
 
 = 1. はじめに =
 
