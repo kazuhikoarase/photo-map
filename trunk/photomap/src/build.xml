@@ -60,35 +60,38 @@
 	</target>
 	
 	<target name="dist" depends="compile">
-
-		<jar jarfile="${dist}/photomap.jar" 
+		
+		<property name="work" location="${dist}/photomap" />
+		<mkdir dir="${work}"/>
+		
+		<jar jarfile="${work}/photomap.jar" 
         	manifest="${src}/assets/MANIFEST.MF">
           <fileset dir="${build}/java">
             <include name="**/*"/>
           </fileset>
         </jar>
 
-		<copy todir="${dist}">
+		<copy todir="${work}">
 			<fileset dir="${build}/flash">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
 
-		<copy todir="${dist}">
+		<copy todir="${work}">
 			<fileset dir="${src}/assets">
 				<include name="**/*"/>
 				<exclude name="MANIFEST.MF"/>
 			</fileset>
 		</copy>
 
-		<copy todir="${dist}">
+		<copy todir="${work}">
 			<fileset dir="${src}/flash-sample">
 				<include name="**/*"/>
 			</fileset>
 		</copy>
 
 		<zip destfile="${dist}/${target.name}.zip">
-			<zipfileset dir="${dist}" prefix="${target.name}">
+			<zipfileset dir="${work}" prefix="${target.name}">
 				<include name="**/*"/>
 				<exclude name="*.zip"/>
 				<exclude name="**/.cache/**"/>
