@@ -22,7 +22,7 @@
  # 前方 
  # 後方
 
-http://photo-map.googlecode.com/svn/assets/p1.png
+ http://photo-map.googlecode.com/svn/assets/p1.png
 
 == 2-2. 交差点 ==
 
@@ -33,7 +33,7 @@ http://photo-map.googlecode.com/svn/assets/p1.png
  # 右側 
  # 左側
 
-http://photo-map.googlecode.com/svn/assets/p2.png
+ http://photo-map.googlecode.com/svn/assets/p2.png
 
 交差が複雑な場所などでは、この限りではありません。
 
@@ -47,7 +47,7 @@ http://photo-map.googlecode.com/svn/assets/p2.png
 
 XML のフォーマットは次のような形式にします。
 
-フォーマット
+*フォーマット*
 
 || *パス*						|| *値*						||
 || /photomap				|| ルート						||
@@ -94,7 +94,7 @@ http://photo-map.googlecode.com/svn/assets/p3.png
  # リンクエリアの写真をダブルクリックすると、ダブルクリックした写真に遷移します。 この際、自動的に相互リンクが作成されます。
  # 全てのリンクを張り終えたら、メニューから 'File - Exit' を選択して、ツールを終了します。
 
-http://photo-map.googlecode.com/svn/assets/pm.jpg
+ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 = 4. 実際にリンクを動き回る =
 
@@ -120,9 +120,9 @@ http://photo-map.googlecode.com/svn/assets/pm.jpg
 
 *概念的な視野*
 
-http://photo-map.googlecode.com/svn/assets/p4.png
+ http://photo-map.googlecode.com/svn/assets/p4.png
 
 *実際の視野*
 
-http://photo-map.googlecode.com/svn/assets/p5.png
+ http://photo-map.googlecode.com/svn/assets/p5.png
  
