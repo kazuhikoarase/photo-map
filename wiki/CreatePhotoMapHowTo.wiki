@@ -47,14 +47,14 @@ XML のフォーマットは次のような形式にします。
 
 フォーマット
 
-||パス					||値							||
-||/photomap				||ルート要素					||
-||/photomap/name		||画像ファイルの url				||
-||/photomap/left		||画像ファイルの相対 url (左側)	||
-||/photomap/front		||画像ファイルの相対 url (前方)	||
-||/photomap/right		||画像ファイルの相対 url (右側)	||
-||/photomap/title		||タイトル						||
-||/photomap/description ||説明						||
+|| *パス*						|| *値*						||
+|| /photomap				|| ルート						||
+|| /photomap/name			|| 画像ファイルの url			||
+|| /photomap/left			|| 画像ファイルの相対 url (左側)	||
+|| /photomap/front			|| 画像ファイルの相対 url (前方)	||
+|| /photomap/right			|| 画像ファイルの相対 url (右側)	||
+|| /photomap/title			|| タイトル					||
+|| /photomap/description	|| 説明						||
 
 例 (DSCF0001.JPG.xml)
 {{{
