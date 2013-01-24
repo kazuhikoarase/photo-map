@@ -71,7 +71,7 @@ XML のフォーマットは次のような形式にします。
 </photomap>
 }}}
 
-http://photo-map.googlecode.com/svn/assets/p3.png
+ http://photo-map.googlecode.com/svn/assets/p3.png
 
 == 3-2. PhotoMap(リンク用ツール)を使う ==
 
