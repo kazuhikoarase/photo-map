@@ -38,6 +38,8 @@ class LinkData  {
         String RIGHT    = "right";
     }
 
+    private static final int MAX_HEIGHT = 2048;
+
     private final File file;
     private final Map<String, String> values;
     private boolean updated;
@@ -73,11 +75,9 @@ class LinkData  {
 
     public void resizeImage() throws IOException {
 
-        int height = 480;
-    
         BufferedImage image = ImageIO.read(file);
         
-        if (image.getHeight() > height) {
+        if (image.getHeight() > MAX_HEIGHT) {
         
             File tmpFile = null;
             
@@ -93,7 +93,7 @@ class LinkData  {
                 throw new IOException("fail to rename:" + tmpFile);
             }
         
-            ImageUtil.createImage(tmpFile, file, height);
+            ImageUtil.createImage(tmpFile, file, MAX_HEIGHT);
         }
 
         updateIconImage();
