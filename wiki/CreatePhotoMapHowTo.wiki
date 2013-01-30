@@ -1,4 +1,4 @@
-= PhotoMap 作成方法 =
+= !PhotoMap作成方法 =
 
 <wiki:toc max_depth="1" />
 
@@ -73,7 +73,7 @@ XML のフォーマットは次のような形式にします。
 
 http://photo-map.googlecode.com/svn/assets/p3.png
 
-== 3-2. PhotoMap(リンク用ツール)を使う ==
+== 3-2. !PhotoMap(リンク用ツール)を使う ==
 
 理屈は単純ですが、実際に大量の写真のリンクを作るのは大変な作業です。 
 
@@ -86,7 +86,7 @@ http://photo-map.googlecode.com/svn/assets/p3.png
 === 使用方法 ===
 
  # photomap.jar と同じか、その下の階層のフォルダに、撮影した写真を用意します。
- # photomap.jar をダブルクリックして、PhotoMap を起動します。
+ # photomap.jar をダブルクリックして、!PhotoMap を起動します。
  # フォルダ一覧から写真のあるフォルダを選択します。
  # メニューから 'File - Resize All Images' を選択して、画像を縮小します。 高さ 2048 ピクセル以上の画像は 元の画像ファイルが書き換えられるので、 あらかじめバックアップを取っておくようにしてください。
  # 画像一覧からメインエリアに写真をドラッグ＆ドロップするか、ダブルクリックして選択します。
