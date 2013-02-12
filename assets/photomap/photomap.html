@@ -64,7 +64,7 @@
             attributes.align = "middle";
             swfobject.embedSWF(
                 "photomap.swf", "flashContent", 
-                "100%", "100%", 
+                "600", "750", 
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);
             // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
@@ -72,6 +72,10 @@
         </script>
     </head>
     <body>
+    	<div>
+    	<span>stitched with </span>
+    	<a href="https://code.google.com/p/photo-map/">PhotoMap</a>
+    	</div>
         <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
              JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
              when JavaScript is disabled.
@@ -89,14 +93,14 @@
         </div>
         
         <noscript>
-            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="photomap">
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="750" id="photomap">
                 <param name="movie" value="photomap.swf" />
                 <param name="quality" value="high" />
                 <param name="bgcolor" value="#ffffff" />
                 <param name="allowScriptAccess" value="sameDomain" />
                 <param name="allowFullScreen" value="true" />
                 <!--[if !IE]>-->
-                <object type="application/x-shockwave-flash" data="photomap.swf" width="100%" height="100%">
+                <object type="application/x-shockwave-flash" data="photomap.swf" width="600" height="750">
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#ffffff" />
                     <param name="allowScriptAccess" value="sameDomain" />
